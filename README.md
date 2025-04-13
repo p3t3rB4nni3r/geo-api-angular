@@ -13,8 +13,6 @@ Pour démarrer l'application, exécutez la commande suivante :
 
     pnpm run start
 
-Cela lancera l'application principale dans votre navigateur.
-
 ## Tests
 
 Pour lancer les tests unitaires du projet, utilisez la commande suivante :
@@ -25,16 +23,15 @@ Les tests sont configurés avec Jest pour garantir le bon fonctionnement de l'ap
 
 ## Technologies utilisées
 
-Ce projet utilise un mono-repository Nx avec les technologies suivantes :
+Ce projet utilise les technologies suivantes :
 
 - Nx pour la gestion de projets monolithiques.
-- Angular 19 pour la création d'applications web.
-- Angular Material pour les composants UI modernes et réactifs.
-- Tailwind CSS pour la gestion des styles utilitaires.
-- Jest pour les tests unitaires.
+- Angular 19.
+- Angular Material.
+- Tailwind CSS.
+- Jest.
 - Internationalisation avec support pour le français et l'anglais.
-- Accessibilité pour rendre l'application accessible aux utilisateurs
-  handicapés.
+- Accessibilité.
 
 ## Structure du projet
 
@@ -42,7 +39,7 @@ Le projet se compose de :
 
 - apps/geo-browser : L'application principale.
 - libs/api : Une librairie pour la gestion des API.
-- libs/features : Une librairie qui contient les fonctionnalités
+- libs/features : Une librairie qui contient les composants/fonctionnalités
   spécifiques à l'application.
 
 ## To-Do List
@@ -61,6 +58,6 @@ Rendre certaines parties des composants plus atomiques : Refactoriser certains c
 
 Il y a encore de nombreux petits détails à améliorer dans le code, mais ces points représentent les principales priorités à traiter dans les prochaines itérations.
 
-**Bonne chance et amusez-vous bien avec ce projet !**
+**A bientôt ;) !**
 
 
