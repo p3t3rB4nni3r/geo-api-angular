@@ -1,0 +1,28 @@
+{
+  "main": {
+    "not-found": "Page not found",
+    "back-home": "back to home page",
+    "region-search": {
+      "label": "Search Region",
+      "code-selected": "Selected region code",
+      "name": "Name",
+      "code": "Code",
+      "code-region": "Region code",
+      "next": "Next",
+      "departments": "Departments",
+      "no-departments": "no results",
+      "row-tooltip": "Click to display cities list"
+    },
+    "select-lang": "Select language",
+    "city-list": {
+      "label": "City list for: ",
+      "name": "Name",
+      "cp": "Zip code",
+      "population": "Population",
+      "dept-code": "Department code",
+      "region-code": "Region code",
+      "epci": "Ecpi code",
+      "back": "Back"
+    }
+  }
+}

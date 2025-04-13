@@ -1,0 +1,123 @@
+<div
+  class="w-full h-full overflow-hidden flex flex-col relative"
+  role="region"
+  aria-labelledby="city-list-title"
+  *transloco="let t"
+>
+  <!-- Title -->
+  <div
+    id="city-list-title"
+    class="w-full flex justify-center items-center text-lg font-bold p-2"
+    role="heading"
+    aria-level="1"
+  >
+    {{ t('main.city-list.label') }} {{$regionName()}}
+  </div>
+
+  <!-- Paginator -->
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 20]"
+    showFirstLastButtons
+    class="sticky bottom-12 w-full !flex !justify-start !items-center bg-white z-10"
+    aria-label="Pagination for cities table"
+  >
+  </mat-paginator>
+
+  <!-- Scrollable table with paginator -->
+  <div class="flex-1 overflow-y-auto mat-elevation-z8">
+    <table
+      mat-table
+      [dataSource]="dataSource"
+      class="w-full"
+      role="table"
+      aria-label="List of cities"
+    >
+      <!-- nom Column -->
+      <ng-container matColumnDef="nom">
+        <th mat-header-cell *matHeaderCellDef scope="col">
+          <strong>{{ t('main.city-list.name') }}</strong>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.nom}} </td>
+      </ng-container>
+
+      <!-- codesPostaux Column -->
+      <ng-container matColumnDef="codesPostaux">
+        <th mat-header-cell *matHeaderCellDef scope="col">
+          <strong>{{ t('main.city-list.cp') }}</strong>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.codesPostaux}} </td>
+      </ng-container>
+
+      <!-- population Column -->
+      <ng-container matColumnDef="population">
+        <th mat-header-cell *matHeaderCellDef scope="col">
+          <strong>{{ t('main.city-list.population') }}</strong>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.population}} </td>
+      </ng-container>
+
+      <!-- codeDepartement Column -->
+      <ng-container matColumnDef="codeDepartement">
+        <th mat-header-cell *matHeaderCellDef scope="col">
+          <strong>{{ t('main.city-list.dept-code') }}</strong>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.codeDepartement}} </td>
+      </ng-container>
+
+      <!-- code Column -->
+      <ng-container matColumnDef="code">
+        <th mat-header-cell *matHeaderCellDef scope="col"><strong>Code</strong></th>
+        <td mat-cell *matCellDef="let element"> {{element.code}} </td>
+      </ng-container>
+
+      <!-- codeEpci Column -->
+      <ng-container matColumnDef="codeEpci">
+        <th mat-header-cell *matHeaderCellDef scope="col">
+          <strong>{{ t('main.city-list.epci') }}</strong>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.codeEpci}} </td>
+      </ng-container>
+
+      <!-- codeRegion Column -->
+      <ng-container matColumnDef="codeRegion">
+        <th mat-header-cell *matHeaderCellDef scope="col">
+          <strong>{{ t('main.city-list.region-code') }}</strong>
+        </th>
+        <td mat-cell *matCellDef="let element"> {{element.codeRegion}} </td>
+      </ng-container>
+
+      <!-- siren Column -->
+      <ng-container matColumnDef="siren">
+        <th mat-header-cell *matHeaderCellDef scope="col"><strong>Siren</strong></th>
+        <td mat-cell *matCellDef="let element"> {{element.siren}} </td>
+      </ng-container>
+
+      <!-- Table header and rows -->
+      <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+      <tr
+        mat-row
+        *matRowDef="let row; columns: displayedColumns; let even = even"
+        [ngClass]="even ? 'white' : '!bg-blue-100'"
+        class="cursor-pointer hover:!bg-gray-200"
+        role="row"
+      ></tr>
+    </table>
+  </div>
+
+  <!-- Sticky footer -->
+  <div
+    class="sticky bottom-15 w-full !flex !justify-start !items-center bg-white z-10 p-2"
+    role="contentinfo"
+    aria-label="Navigation footer"
+  >
+    <button
+      mat-stroked-button
+      class="flex flex-row justify-start items-center"
+      (click)="back()"
+      aria-label="Go back to previous view"
+    >
+      <mat-icon>arrow_back</mat-icon>
+      <span class="ml-2">{{ t('main.city-list.back') }}</span>
+    </button>
+  </div>
+</div>

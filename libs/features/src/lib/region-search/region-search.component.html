@@ -1,0 +1,140 @@
+<div
+  class="w-full h-full flex-col flex gap-4 p-2"
+  role="region"
+  aria-labelledby="region-search-title"
+  *transloco="let t"
+  [formGroup]="formGroup"
+>
+  <!-- Region Search Field -->
+  <div>
+    <mat-form-field subscriptSizing="fixed" appearance="fill" class="w-full">
+      <mat-label id="region-search-title">{{ t('main.region-search.label') }}</mat-label>
+      <mat-icon matPrefix> screenshot_region </mat-icon>
+
+      <input
+        matInput
+        formControlName="regionControl"
+        [matAutocomplete]="auto"
+        (input)="onRegionSearch()"
+        aria-describedby="region-search-description"
+        aria-label="Search region by name"
+      />
+
+      <mat-autocomplete
+        #auto="matAutocomplete"
+        (optionSelected)="onRegionSelect($event)"
+        aria-label="Autocomplete region list"
+      >
+        @for(region of $regions(); track region.code){
+          @if(region && region.nom){
+            <ng-container>
+              <mat-option [value]="region" [attr.aria-label]="region.nom">
+                {{ region.nom }}
+              </mat-option>
+            </ng-container>
+          }
+        }
+      </mat-autocomplete>
+
+      @if($loading()){
+        <mat-icon matSuffix aria-label="Loading regions">pending</mat-icon>
+      }
+      @if($selectedRegion()){
+        <mat-icon matSuffix aria-label="Region selected">done</mat-icon>
+      }
+    </mat-form-field>
+  </div>
+
+  <!-- Selected Region Display -->
+  <div
+    class="flex flex-row gap-2 justify-start items-center"
+    role="group"
+    aria-label="Selected region information"
+  >
+    @if ($selectedRegion()){
+      <span id="region-search-description">{{ t('main.region-search.code-selected') }}</span>
+      <mat-chip-set aria-label="Selected region code">
+        <mat-chip>{{ $selectedRegion()?.code }}</mat-chip>
+      </mat-chip-set>
+    }
+  </div>
+
+  <!-- Departments Label -->
+  <mat-toolbar
+    class="w-full flex flex-row justify-center items-center font-bold text-white gap-2"
+    role="heading"
+    aria-level="2"
+    aria-label="Departments list"
+  >
+    <mat-icon aria-hidden="true">language</mat-icon>
+    <span>{{ t('main.region-search.departments') }}</span>
+  </mat-toolbar>
+
+  <!-- Departments List -->
+  <div
+    class="flex flex-col grow overflow-y-auto min-h-0 b rounded-md"
+    role="region"
+    aria-labelledby="departments-list-title"
+  >
+    @if($departments().length){
+      <table
+        mat-table
+        [dataSource]="dataSource"
+        class="mat-elevation-z8"
+        role="table"
+        aria-label="Departments table"
+      >
+        <!-- Name Column -->
+        <ng-container matColumnDef="nom">
+          <th mat-header-cell *matHeaderCellDef scope="col">
+            {{ t('main.region-search.name') }}
+          </th>
+          <td mat-cell *matCellDef="let element">
+            <div class="h-full flex justify-start items-center gap-2">
+              <mat-icon aria-hidden="true">location_city</mat-icon>
+              <div>{{ element.nom }}</div>
+            </div>
+          </td>
+        </ng-container>
+
+        <!-- Code Column -->
+        <ng-container matColumnDef="code">
+          <th mat-header-cell *matHeaderCellDef scope="col">
+            {{ t('main.region-search.code') }}
+          </th>
+          <td mat-cell *matCellDef="let element"> {{ element.code }} </td>
+        </ng-container>
+
+        <!-- Region Code Column -->
+        <ng-container matColumnDef="codeRegion">
+          <th mat-header-cell *matHeaderCellDef scope="col">
+            {{ t('main.region-search.code-region') }}
+          </th>
+          <td mat-cell *matCellDef="let element"> {{ element.codeRegion }} </td>
+        </ng-container>
+
+        <!-- Table Rows -->
+        <tr mat-header-row *matHeaderRowDef="displayedColumns; sticky: true"></tr>
+        <tr
+          mat-row
+          *matRowDef="let row; columns: displayedColumns; let even = even"
+          [ngClass]="even ? 'white' : '!bg-blue-100'"
+          class="cursor-pointer hover:!bg-gray-200"
+          [matTooltip]="t('main.region-search.row-tooltip')"
+          (click)="goToDepartment(row.nom, row.code)"
+          role="row"
+          [attr.aria-label]="'Department ' + row.nom + ', code ' + row.code"
+        ></tr>
+      </table>
+    } @else {
+      <div
+        class="flex flex-col justify-center items-center h-full"
+        role="note"
+        aria-label="No departments found"
+      >
+        <mat-icon class="text-8xl text-gray-400" aria-hidden="true">search</mat-icon>
+        <span class="text-gray-400 text-lg font-bold">{{ t('main.region-search.no-departments') }}</span>
+      </div>
+    }
+  </div>
+</div>

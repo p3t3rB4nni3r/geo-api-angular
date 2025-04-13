@@ -1,0 +1,23 @@
+  <mat-toolbar color="primary" *transloco="let t">
+
+    <div class="flex flex-row gap-4 justify-start items-center w-full">
+      <button mat-icon-button [matMenuTriggerFor]="menu" aria-label="Select language" [matTooltip]="t('main.select-lang')">
+        <mat-icon class="!text-white">more_vert</mat-icon>
+      </button>
+      <mat-icon>language</mat-icon>
+      <div>geo browser</div>
+      <div class="flex grow justify-end items-center text-sm">
+        v.{{version}}
+      </div>
+    </div>
+  </mat-toolbar>
+  <mat-menu #menu="matMenu">
+    <button mat-menu-item (click)="selectLang('en')" >
+      <div class="fi fi-gb"></div>
+    </button>
+    <button mat-menu-item (click)="selectLang('fr')">
+      <div class="fi fi-fr"></div>
+    </button>
+  </mat-menu>
+  <router-outlet></router-outlet>
+

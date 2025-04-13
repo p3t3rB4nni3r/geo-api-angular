@@ -1,0 +1,28 @@
+{
+  "main": {
+    "not-found": "Page non trouvée",
+    "back-home": "Retour à l’accueil",
+    "region-search": {
+      "label": "Nom de la région",
+      "code-selected": "Code région sélectionné",
+      "name": "Nom",
+      "code": "Code",
+      "code-region": "Code région",
+      "next": "Suivant",
+      "departments": "Départements",
+      "no-departments": "aucun résultat",
+      "row-tooltip": "Clic pour obtenir la liste des communes "
+    },
+    "select-lang": "Selectionner la langue",
+    "city-list": {
+      "label": "Liste des communes pour: ",
+      "name": "Nom",
+      "cp": "Code postal",
+      "population": "Population",
+      "dept-code": "Code département",
+      "region-code": "Code région",
+      "epci": "Code epci",
+      "back": "Revenir"
+    }
+  }
+}
